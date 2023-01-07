@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="index.html">Retour</a><br><br>
+    <div id="root"></div>
+    <script>
+        // Create an empty array. For example: let shoppingList=[].
+        let shoppingList = []
+
+        // Create a form containing : a text input field and an “AddItem” button. Add this form to the DOM.
+        const root = document.getElementById('root')
+
+        root.insertAdjacentHTML('beforeend', `
+            <form>
+                <input type="text" id="itemInput">
+                <button type="button" id="addItemButton">AddItem</button>
+            </form>
+        `)
+
+        // Type what you need to buy in the text input field, then add the new item to the array as soon as you click on the “AddItem” button (Hint: create a function named addItem()).
+        const addItemButton = document.getElementById('addItemButton')
+        addItemButton.addEventListener('click', addItem)
+
+        function addItem(e) {
+            e.preventDefault()
+            const itemInput = document.getElementById('itemInput')
+            const item = itemInput.value
+            shoppingList.push(item)
+            itemInput.value = ''
+            console.log(shoppingList)
+        }
+
+        // Add a “ClearAll” button to the DOM, that when clicked on, should call the clearAll() function (see below).
+        root.insertAdjacentHTML('beforeend', `
+            <button type="button" id="clearAllButton">ClearAll</button>
+        `)
+
+        const clearAllButton = document.getElementById('clearAllButton')
+        clearAllButton.addEventListener('click', clearAll)
+
+        // Create a function named clearAll() that should clear out all the items in the shopping list.
+        function clearAll() {
+            shoppingList = []
+            console.log(shoppingList)
+        }
+    </script>
+</body>
+</html>
